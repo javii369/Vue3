@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios</title>
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.js"
+        integrity="sha512-RjvSEaeDqPCfUVQ9kna2/2OqHz/7F04IOl1/66LmQjB/lOeAzwq7LrbTzDbz5cJzlPNJ5qteNtHR56XaJSTNWw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        /*axios
+        .get("https://jsonplaceholder.typicode.com/posts")
+        .then((res) => console.log(res.data[0].title))*/
+        
+        const request = async() => {
+            const { data } = await axios.get("https://jsonplaceholder.typicode.com/posts")
+
+            const { userId, title, id } = data[0]
+            console.log(userId)
+            console.log(title)
+            console.log(id)
+
+        }
+
+        request()
+    </script>
+</body>
+
+</html>
