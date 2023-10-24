@@ -38,6 +38,10 @@ export default {
         swal.fire({
           title: "Sin busqueda",
           icon: "error",
+          showConfirmButton: false,
+          showCloseButton: false,
+          timer: 2500,
+          timerProgressBar: true,
         });
 
         return;
