@@ -1,0 +1,26 @@
+@import './base.css';
+
+.container {
+  padding: 1rem;
+  font-weight: normal;
+  display: grid;
+  place-items: center;
+  margin-top: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0 2rem ;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
