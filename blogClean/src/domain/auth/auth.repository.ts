@@ -1,3 +1,8 @@
+import type { UserCredential } from "firebase/auth";
+
 export abstract class AuthRepository {
-  public abstract signInEmailAndPassword(): void;
+  public abstract signInEmailAndPassword(
+    email: string,
+    password: string
+  ): Promise<UserCredential>;
 }
