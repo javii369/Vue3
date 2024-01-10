@@ -5,4 +5,8 @@ export abstract class AuthRepository {
     email: string,
     password: string
   ): Promise<UserCredential>;
+  abstract registerUserWithEmailAndPassword(
+    email: string,
+    password: string
+  ): Promise<UserCredential>;
 }
