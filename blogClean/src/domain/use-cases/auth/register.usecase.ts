@@ -1,6 +1,6 @@
 import { AuthServices } from "../../../services/auth.service";
-export class LoginUseCase {
+export class RegisterUseCase {
   public static execute(email: string, password: string) {
-    AuthServices.signInWithEmailAndPassword(email, password);
+    AuthServices.registerUserWithEmailAndPassword(email, password);
   }
 }

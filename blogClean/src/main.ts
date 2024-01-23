@@ -4,8 +4,10 @@ import { VueFire, VueFireAuth } from "vuefire";
 import { createPinia } from "pinia";
 
 import App from "./App.vue";
-import router from "./router";
+import router from "./presentation/router";
 import { firebaseApp } from "./config/firebaseconfig";
+
+import "./presentation/assets/main.css";
 
 const app = createApp(App);
 
