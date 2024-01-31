@@ -4,7 +4,7 @@ import {
   type UserCredential,
 } from "firebase/auth";
 import { AuthRepository } from "../../domain/respository/auth/auth.repository";
-import { auth } from "../../config/firebaseconfig";
+import { auth } from "../../config/firebaseConfig";
 
 export class AuthModel extends AuthRepository {
   public signInEmailAndPassword(

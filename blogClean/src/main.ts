@@ -5,9 +5,9 @@ import { createPinia } from "pinia";
 
 import App from "./App.vue";
 import router from "./presentation/router";
-import { firebaseApp } from "./config/firebaseconfig";
 
 import "./presentation/assets/main.css";
+import { firebaseApp } from "./config/firebaseConfig";
 
 const app = createApp(App);
 
