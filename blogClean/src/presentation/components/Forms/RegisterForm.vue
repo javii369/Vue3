@@ -35,7 +35,6 @@ useAuthStore } from '../../stores/auth.store';
         class="input input-bordered w-full max-w-xs"
       />
     </label>
-
     <button type="submit" class="btn btn-block mt-5">Register</button>
   </form>
 </template>
