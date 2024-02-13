@@ -3,7 +3,7 @@ import { LoginEmailAndPasswordUseCase } from
 useAuthStore } from '../../stores/auth.store';
 <template>
   <h1 class="text-3x1">Login</h1>
-  <form @submit.prevent="loginWithEmailAndPassword">
+  <form @submit.prevent="login">
     <label class="form-control w-full">
       <div class="label">
         <span class="label-text">Email</span>
@@ -27,14 +27,37 @@ useAuthStore } from '../../stores/auth.store';
     </label>
 
     <button type="submit" class="btn btn-block mt-5">Sing In</button>
-    <button type="button" class="btn btn-block mt-5 btn-error" disabled>
+    <button
+      @click="loginWithGoogle"
+      type="button"
+      class="btn btn-block mt-5 btn-error"
+    >
       Login Whit Google
     </button>
   </form>
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
+
 import { useAuthStore } from "@/presentation/stores/auth.store";
 
-const { loginWithEmailAndPassword, authForm } = useAuthStore();
+const router = useRouter();
+
+const { loginWithEmailAndPassword, authForm, loginWithGoogle } = useAuthStore();
+
+const login = async () => {
+  const user = await loginWithEmailAndPassword();
+  if (user) {
+    return router.replace({ name: "blog" });
+  }
+};
+
+const loginGoogle = async () => {
+  const user = await loginWithGoogle();
+  if (user) {
+    return router.replace({ name: "blog" });
+  }
+};
 </script>

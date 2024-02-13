@@ -4,6 +4,8 @@ import { LoginEmailAndPasswordUseCase } from "../../domain/use-cases/auth/loginE
 import { RegisterUseCase } from "@/domain/use-cases/auth/register.usecase";
 import { verify } from "crypto";
 import { verifyPassword } from "@/helpers/verifyPassword";
+import { LogoutUseCase } from "@/domain/use-cases/auth/logout.usecase";
+import { LoginGoogleUseCase } from "@/domain/use-cases/auth/loginGoogle.usecase";
 
 const authFormInitialState = reactive({
   email: "",
@@ -53,8 +55,26 @@ export const useAuthStore = defineStore("auth", () => {
       );
 
       if (!user) {
-        w;
         throw new Error("Not is posible create");
+      }
+
+      return user;
+    } catch (error) {
+      console.log(error);
+      resetForm();
+    }
+  };
+
+  const logout = () => {
+    return LogoutUseCase.execute();
+  };
+
+  const loginWithGoogle = async () => {
+    try {
+      const user = await LoginGoogleUseCase.execute();
+
+      if (!user) {
+        throw new Error("User not found");
       }
 
       return user;
@@ -67,6 +87,8 @@ export const useAuthStore = defineStore("auth", () => {
   return {
     authForm,
     loginWithEmailAndPassword,
+    loginWithGoogle,
+    logout,
     registerWithEmailAndPassword,
     resetForm,
   };

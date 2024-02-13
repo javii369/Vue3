@@ -3,7 +3,7 @@ import { LoginEmailAndPasswordUseCase } from
 useAuthStore } from '../../stores/auth.store';
 <template>
   <h1 class="text-3x1">Register</h1>
-  <form @submit.prevent="registerWithEmailAndPassword">
+  <form @submit.prevent="register">
     <label class="form-control w-full">
       <div class="label">
         <span class="label-text">Email</span>
@@ -40,10 +40,19 @@ useAuthStore } from '../../stores/auth.store';
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from "@/presentation/stores/auth.store";
 import { onMounted } from "vue";
 
+import { useAuthStore } from "@/presentation/stores/auth.store";
+import router from "@/presentation/router";
+
 const { registerWithEmailAndPassword, authForm, resetForm } = useAuthStore();
+
+const register = async () => {
+  const user = await registerWithEmailAndPassword();
+  if (user) {
+    return router.replace({ name: "blog" });
+  }
+};
 
 onMounted(() => {
   resetForm();
