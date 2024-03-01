@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyAGFwcDfImXP_BNpoCso5QBhsZH-Z6plNo",
   authDomain: "blog-vue-283ed.firebaseapp.com",
@@ -13,3 +15,6 @@ export const firebaseApp = initializeApp(firebaseConfig);
 //Authentication
 export const auth = getAuth(firebaseApp);
 export const googleAuthProvider = new GoogleAuthProvider();
+
+// Firestore
+export const firestore = getFirestore(firebaseApp);

@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <main>
+  <main class="m-16">
     <slot></slot>
   </main>
 </template>
