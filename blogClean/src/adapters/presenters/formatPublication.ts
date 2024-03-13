@@ -1,6 +1,8 @@
 import type { PublicationEntity } from "@/domain/entities/publications.entity";
 import { DocumentData } from "firebase/firestore";
 
+import { DateTime } from "luxon";
+
 export const formatPublicationAdaper = (
   data: DocumentData,
   id: string
@@ -8,9 +10,11 @@ export const formatPublicationAdaper = (
   return {
     id,
     uid: data.uid,
-    active: true,
+    active: data.active,
     body: data.body,
-    createdAt: new Date(),
-    img: "https://media.sivasdescalzo.com/media/catalog/product/I/E/IE6180_sivasdescalzo-adidas-ATHLETICS_I_BASKETBALL-1708091367-1.jpg?quality=70&auto=webp&fit=bounds&width=420",
+    createdAt: DateTime.fromSeconds(data.createdAt.seconds).toLocaleString(
+      DateTime.DATETIME_FULL
+    ),
+    img: data.img,
   };
 };

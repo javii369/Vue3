@@ -9,6 +9,9 @@ import type {
 import { formatPublicationAdaper } from "@/adapters/presenters/formatPublication";
 import { createPublicationUseCase } from "@/domain/use-cases/blog/createPublication.usecase";
 import Swal from "sweetalert2";
+import { StorageImageUseCase } from "@/domain/use-cases/blog/storageImage.usecase";
+import { getDownloadURL } from "firebase/storage";
+import { DownloadImageUrlUseCase } from "@/domain/use-cases/blog/getDownoaldImageUrl.usecase";
 
 export const usepublications = defineStore("publications", () => {
   const data = reactive<PublicationsEntity>({
@@ -44,9 +47,31 @@ export const usepublications = defineStore("publications", () => {
     }
   };
 
+  const uploadImage = async (file: File) => {
+    try {
+      Swal.showLoading();
+      await StorageImageUseCase.execute(file);
+    } catch (error) {
+      console.log(error);
+      Swal.hideLoading();
+    }
+  };
+
+  const getDownloadURL = async (file: File) => {
+    try {
+      const res = await DownloadImageUrlUseCase.execute(file);
+      return res;
+    } catch (error) {
+      console.log(error);
+    } finally {
+      Swal.hideLoading();
+    }
+  };
   return {
     create,
     data,
     findAll,
+    uploadImage,
+    getDownloadURL,
   };
 });
